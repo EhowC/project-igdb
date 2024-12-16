@@ -6,7 +6,7 @@
 ## What is this project for?
 This project is a demonstration of how to utilize cloud services to create a data engineering project from scratch. It is part of a guided course on Maven by [David Freitag](https://github.com/dkfreitag), which can be found [here](https://maven.com/david-freitag/first-serverless-de-project). The goals of creating this project include learning about various tools within Amazon Web Services (AWS), how they can be combined to create a compete workflow for extracting, transforming, and loading (ETL) data from online sources, and connect the transformed data to a tool for visualization. The process applied attempts to be as cost-effective and quick-to-query as possible so costs are contained with an increasing scale of data.
 
-Perhaps more importantly, this project is about expanding my horizons and growing as a data professional. I enriched this project with my personal interests by learning how to use the [Internet Game Database (IGDB) API](https://www.igdb.com/api). This document doesn't dive deeply into the code but instead focuses on the broader picture of what is being used and why.
+Perhaps more importantly, this project is about expanding my horizons and growing as a data professional. I aligned this project with my personal interests by learning how to use the [Internet Game Database (IGDB) API](https://www.igdb.com/api), as gaming is a lifelong hobby and passion of mine. This document doesn't dive deeply into the technical details or code, instead focusing on the broader picture of what is being used and why.
 
 ## Data Architecture 
 
