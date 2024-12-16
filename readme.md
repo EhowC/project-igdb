@@ -10,7 +10,7 @@ Perhaps more importantly, this project is about expanding my horizons and growin
 
 ## Data Architecture 
 
-The bulk of the this project uses AWS, with a bit of Python to process the data in a format that processes properly. Some of the tools are not necessary in principle given the "on demand" nature of the data collection, but they can be applied in robust settings like a live data stream.
+The bulk of the this project uses AWS, with a bit of Python to process the data in a format that processes properly. Some of the tools are not necessary in principle given the "on demand" nature of the data collection for this project, but they can (and should) be applied in more robust environments with live data collection.
 * **Extract**: Lambda, Firehose, S3, Python, Athena
 * **Transform**: S3, Athena, Glue
 * **Load**: S3, Athena, Glue, Grafana
@@ -105,7 +105,7 @@ Practically any data visualization tool could be used for this step, but [Grafan
 ![The beginning of the Glue workflow.](images/project_igdb_grafana_dashboard.png)
 [Link to Project IGBD's Grafana Snapshot](https://ehowconsults.grafana.net/dashboard/snapshot/2EuZOXr4pB4noHQbvUNC5LGuQNIpiUuf)
 
-## Improvements
+## Improvements to the ETL
 
 1. The scope was limited to a small subset of Nintendo games. A process could be written to extract all available entries in the IGDB DB over a period of time to populate the database. Given the natural constraint of 500 entries per query from the IGDB API, this could potentially be a costly upfront extraction.
 2. The extraction could also include all the omitted fields.
