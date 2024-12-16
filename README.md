@@ -47,7 +47,7 @@ At a very high level, the process goes as follows.
 3. A process is written in Lambda using Python code to call the API and point the data to the firehose. The Python code used to call the API can be found [here](lambda/get_igdb_data_lambda.py).
 4. Athena is used to verify the data within the S3 bucket. (A database and an S3 bucket need to be created to query.)
 
-Once the extracted data is verified to be as expected, we can move onto...
+Because the IGDB API limits 500 results per query, the process above was run twice with different query parameters to gather about 1,000 data entries. Once the extracted data is verified to be as expected, we can move onto...
 
 ## Transformation
 
@@ -97,9 +97,20 @@ With the created production table formatted as a parquet and with a partitioned 
 
 ## Loading & Visualizing the Data
 
+Practically any data visualization tool could be used for this step, but [Grafana](https://www.grafana.com/) is used here for its easy integration with Athena. After creating AWS credentials for Grafana to access our data, creating data visualzations for the IGDB data was relatively straightforward to demonstrate the results of the ETL. With a little under 1,000 games available, a few charts were created to demonstrate the usage of the data:
+* Nintendo games released per year
+* Average Nintendo game ratings per year
+* Top 100 Nintendo Games by rating
 
-
+![The beginning of the Glue workflow.](images/project_igdb_grafana_dashboard.png)
 [Link to Project IGBD's Grafana Snapshot](https://ehowconsults.grafana.net/dashboard/snapshot/2EuZOXr4pB4noHQbvUNC5LGuQNIpiUuf)
 
 ## Improvements
 
+1. The scope was limited to a small subset of Nintendo games. A process could be written to extract all available entries in the IGDB DB over a period of time to populate the database. Given the natural constraint of 500 entries per query from the IGDB API, this could potentially be a costly upfront extraction.
+2. The extraction could also include all the omitted fields.
+3. IN addition, the process could extract tables that would add missing context to fields such as genre, platform, etc.
+4. IGDB entries are updated on a weekly basis, which could be applied to the Lambda and Glue workflow as an automated process.
+5. The workflow could be updated insert and update new entries instead of deleting and creating the table. This may be more efficient as the database grows in size.
+6. Additional data quality checks can be added, such as flagging essential fields which are missing.
+7. In a real world situation of the production table, there would be a small window in which they could not access it due to the workflow deleting it. The workflow could be updated to create the new production table, delete the old production, then rename the new production table to save some downtime.
