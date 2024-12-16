@@ -6,9 +6,9 @@ client = boto3.client('athena')
 # Database, table names, and S3 buckets need to be added in
 SOURCE_TABLE_NAME = '<source table>'
 NEW_TABLE_NAME = '<parquet table name'
-NEW_TABLE_S3_BUCKET = '<s3 bucket>'
-MY_DATABASE = '<database name'
-QUERY_RESULTS_S3_BUCKET = '<a different s3 bucket>'
+NEW_TABLE_S3_BUCKET = '<parquet S3 bucket>'
+MY_DATABASE = '<database name>'
+QUERY_RESULTS_S3_BUCKET = '<Athena results S3 bucket>'
 
 # Refresh the table
 queryStart = client.start_query_execution(
