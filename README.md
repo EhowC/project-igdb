@@ -82,7 +82,7 @@ At a high level, the steps for setting up the Glue workflow are as follows:
 11. Create a trigger activated by the Python script from step 10.
 12. Connect a Python script which creates a duplicate of the parquet table as a **production** table. This would be the table queried by a BI tool.
 
-The Python scripts for the steps above can be found in **REFERENCE FOLDER HERE**[this folder].
+The Python scripts for the steps above can be found in [here](glue/).
 
 After the workflow, we end up with a similar data structure as before with another enhancement.
 * `id` (int): the unique ID of the game from IGDB
