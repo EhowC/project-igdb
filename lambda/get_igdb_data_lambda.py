@@ -3,6 +3,7 @@ import boto3
 import urllib3
 import datetime
 
+## Firehose name, client ID and, secret key need to be filled in.
 FIREHOSE_NAME = <<firehose name>>
 
 def lambda_handler(event, context):
@@ -10,7 +11,7 @@ def lambda_handler(event, context):
     r = http.request('POST', 'https://api.igdb.com/v4/games',
                      body='fields id,name,first_release_date,total_rating,total_rating_count; where total_rating_count >= 50 & release_dates.platform = (4,18,19,20,21,37,130,137,159,416); sort first_release_date asc; limit 500;',
                      headers={'Client-ID': <<client id>>,'Authorization': 'Bearer <<secret key>>'})
-
+    
     r_dict = json.loads(r.data.decode(encoding='utf-8', errors='strict'))
     
     processed_dict = {}
