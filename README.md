@@ -72,15 +72,15 @@ At a high level, the steps for setting up the Glue workflow are as follows:
 1. Create a trigger to start the workflow. As mentioned, it is triggered on demand.
 2. Connect the Glue crawler.
 3. Create a trigger that is activated by the crawler.
-4. Connect a Python script which creates a parquet table, referencing the table created by the crawler.
+4. Connect a Python script which deletes the parquet table, if it exists.
 5. Create a trigger activated by the Python script from step 4.
-6. Connect a Python script which deletes the parquet, table if it exists.
+6. Connect a Python script which creates a parquet table, referencing the table created by the crawler.
 7. Create a trigger activated by the Python script from step 6.
-8. Connect a Python script which creates the parquet table, referencing the table created by the crawler.
+8. Connect a Python script which checks for duplicate data in the parquet table. The workflow stops if it fails this data quality check.
 9. Create a trigger activated by the Python script from step 8.
-10. Connect a Python script which checks for duplicate data in the parquet table. The workflow stops if it fails this data quality check.
+10. Connect a Python script which deletes the **production** parquet table, if it exists.
 11. Create a trigger activated by the Python script from step 10.
-12. Connect a Python script which creates a duplicate of the parquet table as a "production" table. This would be the table queried by a BI tool.
+12. Connect a Python script which creates a duplicate of the parquet table as a **production** table. This would be the table queried by a BI tool.
 
 The Python scripts for the steps above can be found in **REFERENCE FOLDER HERE**[this folder].
 
