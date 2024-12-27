@@ -10,7 +10,7 @@ Perhaps more importantly, this project is about expanding my horizons and growin
 
 ## Data Architecture 
 
-The bulk of the this project uses AWS, with a bit of Python to process the data in a format that processes properly. Some of the tools are not necessary in principle given the "on demand" nature of the data collection for this project, but they can (and should) be applied in more robust environments with live data collection.
+The bulk of the this project uses AWS, with a bit of Python to process the data in a format that processes properly. Some of the tools are not necessary in principle given the "on demand" nature of the data collection for this project, but they can (and should) be applied in more robust environments with live data collections.
 * **Extract**: Lambda, Firehose, S3, Python, Athena
 * **Transform**: S3, Athena, Glue
 * **Load**: S3, Athena, Glue, Grafana
@@ -108,9 +108,8 @@ Practically any data visualization tool could be used for this step, but [Grafan
 ## Improvements to the ETL
 
 1. The scope was limited to a small subset of Nintendo games. A process could be written to extract all available entries in the IGDB DB over a period of time to populate the database. Given the natural constraint of 500 entries per query from the IGDB API, this could potentially be a costly upfront extraction.
-2. The extraction could also include all the omitted fields.
-3. IN addition, the process could extract tables that would add missing context to fields such as genre, platform, etc.
-4. IGDB entries are updated on a weekly basis, which could be applied to the Lambda and Glue workflow as an automated process.
-5. The workflow could be updated insert and update new entries instead of deleting and creating the table. This may be more efficient as the database grows in size.
-6. Additional data quality checks can be added, such as flagging essential fields which are missing.
-7. In a real world situation of the production table, there would be a small window in which they could not access it due to the workflow deleting it. The workflow could be updated to create the new production table, delete the old production, then rename the new production table to save some downtime.
+2. The extraction could also include omitted fields, including tables that would add missing context to fields such as genre, platform, etc.
+3. IGDB entries are updated on a weekly basis, which could be applied to the Lambda and Glue workflow as an automated process.
+4. The workflow could be updated insert and update new entries instead of deleting and creating the table. This may be more efficient as the database grows in size.
+5. Additional data quality checks can be added, such as flagging essential fields which are missing.
+6. In a real world situation of the production table, there would be a small window in which they could not access it due to the workflow deleting it. The workflow could be updated to create the new production table, delete the old production, then rename the new production table to save some downtime.
